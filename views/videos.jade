@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	div.container
+		div.row
+			div
+				ul
+				each user in users
+					span
+						li #{user.firstName} #{user.lastName}&nbsp;
+							a(href='mailto:#{user.email}') mailto:#{user.email}&nbsp;
+							a(href='#{user.videoLink}') &lt;#{user.videoLink}&gt;
+		div.row
+			a(href='/signout', class='text-center new-account') Sign Out

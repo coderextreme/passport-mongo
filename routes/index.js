@@ -1,4 +1,5 @@
 var express = require('express');
+var videos = require('../videos');
 var router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
@@ -41,6 +42,13 @@ module.exports = function(passport){
 	/* GET Home Page */
 	router.get('/home', isAuthenticated, function(req, res){
 		res.render('home', { user: req.user });
+	});
+
+	/* GET Videos Page */
+	router.get('/videos', isAuthenticated, function(req, res){
+		videos(req, function(err, users) {
+			res.render('videos', { user: req.user, users: users });
+		});
 	});
 
 	/* Handle Logout */
